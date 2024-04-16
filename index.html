@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ghost │Login Page</title>
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      background-color: black;
+      font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+      cursor: url('move.gif'), auto; /* Default cursor */
+    }
+
+    #background-video {
+      position: fixed;
+      right: 0;
+      bottom: 0;
+      z-index: -1;
+      width: 100%;
+      height: 100%;
+      margin-left: 100px;
+      object-fit: cover; 
+    }
+
+    #login-form {
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+      display: none; 
+    }
+
+    h2 {
+      text-align: center;
+      color: white;
+      
+    }
+
+    form {
+      text-align: center;
+    }
+
+    div {
+      margin-bottom: 10px;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      color: rgb(0, 225, 255);
+    }
+
+    input[type="text"],
+    input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 5px;
+      box-sizing: border-box;
+      background-color: rgba(255, 255, 255, 0.1);
+      color: white;
+    }
+
+    button[type="submit"] {
+      background-color: rgba(255, 0, 234, 0.5);
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button[type="submit"]:hover {
+      background-color: rgb(0, 174, 255);
+    }
+
+    #loading {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.7);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+    }
+
+    #loading img {
+      width: 100px;
+      height: 100px;
+    }
+  </style>
+</head>
+<body>
+  <div id="loading">
+    <img src="loading.gif" alt="Loading...">
+  </div>
+
+  <video autoplay muted loop id="background-video">
+    <source src="bg-video.mp4" type="video/mp4">
+    Your browser does not support HTML5 video..
+  </video>
+  
+  <div id="login-form">
+    <h2>Login Page</h2>
+    <form onsubmit="login()">
+      <div>
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+      </div>
+      <div>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+      </div>
+      <button type="submit">Login</button>
+    </form>
+  </div>
+
+<script>
+  function login() {
+    var usernames = ["ben10", "catwomen","butsaab", "goku"];
+    var passwords = ["gwen", "batman","shera", "bulma"];
+
+    var inputname = document.getElementById('username').value;
+    var inputpass = document.getElementById('password').value;
+
+    var index = usernames.indexOf(inputname);
+
+    if (index !== -1 && inputpass === passwords[index]) {
+      alert("Login Successful");
+      window.location.href = "home.html"; 
+    } else {
+      alert("Incorrect username or password. Get Lost or try again.");
+    }
+  }
+
+  setTimeout(function() {
+    document.getElementById('loading').style.display = 'none';
+    document.getElementById('login-form').style.display = 'block';
+  }, 7000);
+
+  
+  document.addEventListener('mousemove', function(e) {
+    document.body.style.cursor = 'url(move.gif), auto';
+  });
+
+  document.addEventListener('mousedown', function(e) {
+    document.body.style.cursor = 'url(click.gif), auto';
+    setTimeout(function() {
+      document.body.style.cursor = 'url(move.gif), auto';
+    }, 1000); 
+  });
+</script>
+
+</body>
+</html>
